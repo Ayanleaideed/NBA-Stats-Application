@@ -72,8 +72,8 @@ Interested in contributing? Great! Here’s how you can help:
 
 ## Authors
 
-- **Your Name** - Initial work - [YourGithubProfile](https://github.com/YourProfile)
-- **Teammate's Name** - Contributor - [TeammateGithubProfile](https://github.com/TeammateProfile)
+- **Your Name** - Initial work - https://github.com/Ayanleaideed
+- **Teammate's Name** - Contributor - https://github.com/ColeHenke
 - Additional team members...
 
 ## Acknowledgments
