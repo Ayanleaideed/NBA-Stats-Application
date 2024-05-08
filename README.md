@@ -1,4 +1,3 @@
-Below is a well-structured `README.md` for your project, reflecting the details you provided about its context and the code:
 
 ---
 
