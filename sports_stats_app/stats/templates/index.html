@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .live-scores-ticker {
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .scores-marquee {
+    display: flex;
+    animation: marquee 60s linear infinite;
+  }
+
+  .score-card {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .score-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upcoming-game .score-header {
+    background-color: #28a745;
+    /* Green for upcoming games */
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-270%, 0, 0);
+    }
+  }
+
+  .table-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    margin-bottom: 40px;
+  }
+</style>
+
+<div class="live-scores-ticker">
+  {% if error_message %}
+  <div class="alert alert-danger">{{ error_message }}</div>
+  {% endif %}
+  <div class="scores-marquee">
+    {% if game_data %}
+    {% for game in game_data %}
+    <div class="score-card {% if game.status == 'Upcoming' %}upcoming-game{% endif %}">
+      <div class="score-header">{{ game.home_team }} vs {{ game.away_team }}</div>
+      <div class="card-body">
+        <div>Score: {{ game.home_score }} - {{ game.away_score }}</div>
+        <div>Status: {{ game.status }}</div>
+        <div>Date: {{ game.date }}</div>
+        <div>Series: {{ game.series_text }}</div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="score-card">
+      <div class="card-body">No live game data available at this moment.</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+
+
+<div class="container table-container">
+  <h2 class="text-center">Stats Table</h2>
+  <form action="{% url 'index' %}" method="post" class="d-flex justify-content-center gap-2 mt-3">
+    {% csrf_token %}
+    <button class="btn btn-success" type="submit" name="button" value="by_position">By Position</button>
+    <button class="btn btn-secondary" type="submit" name="button" value="by_points">By Points</button>
+    <button class="btn btn-primary" type="submit" name="button" value="by_rebounds">By Rebounds</button>
+    <button class="btn btn-danger" type="submit" name="button" value="by_efficiency">By Efficiency</button>
+  </form>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Position</th>
+        <th scope="col">Points</th>
+        <th scope="col">Rebounds</th>
+        <th scope="col">Efficiency</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in players %}
+      <tr>
+        <td><a href="{% url 'search_selected_player' player.first_name %}">{{ player.full_name }}</a></td>
+        <td>{{ player.rank }}</td>
+        <td>{{ player.position }}</td>
+        <td>{{ player.pts|floatformat:1 }}</td>
+        <td>{{ player.reb|floatformat:1 }}</td>
+        <td>{{ player.efficiency|floatformat:1 }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">Click on a filter to load some players!!</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    function fetchData() {
+      $.ajax({
+        url: '{% url "fetch-scores" %}',  // Use Django URL tag to resolve URL
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          if (data.games) {
+            data.games.forEach(function (game, index) {
+              $('#score-card-' + index).find('.score-header').text(game.home_team + ' vs ' + game.away_team);
+              $('#score-card-' + index).find('.card-body p').first().text('Score: ' + game.home_score + ' - ' + game.away_score);
+              $('#score-card-' + index).find('.card-body p').eq(1).text('Status: ' + game.status);
+              $('#score-card-' + index).find('.card-body p').eq(2).text('Series: ' + game.series_text);
+            });
+            console.log(data.games)
+          }
+        },
+        error: function (error) {
+          console.log('Error:', error);
+        }
+      });
+    }
+
+    setInterval(fetchData, 10000); // Refresh every 10 seconds
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const scoreCards = document.querySelectorAll('.score-card');
+    const totalWidth = scoreCards.length * 310; // Each card width + margin-right
+    const marquee = document.querySelector('.scores-marquee');
+
+    // Calculate duration: Adjust 30s base duration proportional to the number of cards
+    const duration = Math.max(30, scoreCards.length * 3);
+    marquee.style.animationDuration = `${duration}s`;
+
+    // Adjust keyframe to end with the total width
+    document.styleSheets[0].insertRule(`
+      @keyframes marquee {
+        from { transform: translate3d(${window.innerWidth}px, 0, 0); }
+        to { transform: translate3d(-${totalWidth}px, 0, 0); }
+      }
+    `, document.styleSheets[0].cssRules.length);
+  });
+</script>
+{% endblock content %}
