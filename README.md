@@ -72,9 +72,9 @@ Interested in contributing? Great! Here’s how you can help:
 
 ## Authors
 
-- **Your Name** - Initial work - [YourGithubProfile](https://github.com/YourProfile)
-- **Teammate's Name** - Contributor - [TeammateGithubProfile](https://github.com/TeammateProfile)
-- Additional team members...
+- **Your Name** - Initial work - https://github.com/Ayanleaideed
+- **Teammate's Name** - Contributor - https://github.com/ColeHenke
+
 
 ## Acknowledgments
 
@@ -87,4 +87,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-Feel free to customize the sections to better match your project's specifics or to add any additional information that might be relevant.
