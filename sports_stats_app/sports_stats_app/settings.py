@@ -25,14 +25,7 @@ SECRET_KEY = 'django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['.vercel.app']
-# Configure allowed hosts to include Vercel domain
-# ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
-# api/settings.py
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
-
-# api/settings.py
-WSGI_APPLICATION = 'api.wsgi.app'
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'stats.apps.StatsConfig',
-    'stats',
+    'stats.apps.StatsConfig'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +76,7 @@ WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -144,10 +136,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
-# Add configuration for static files (if your app uses them)
-# STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -15,7 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sports_stats_app.settings')
 
 application = get_wsgi_application()
 
-# app = application
-
-# api/wsgi.py
-app = get_wsgi_application()
+app = application
