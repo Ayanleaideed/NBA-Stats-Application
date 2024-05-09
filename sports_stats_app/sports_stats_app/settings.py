@@ -27,7 +27,12 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['.vercel.app']
 # Configure allowed hosts to include Vercel domain
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+# api/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+
+# api/settings.py
+WSGI_APPLICATION = 'api.wsgi.app'
 
 
 # Application definition
