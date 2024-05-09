@@ -12,7 +12,12 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "sports_stats_app/wsgi.py"
+      "dest": "sports_stats_app/wsgi.py",
+      "config": {
+        "wsgi": {
+          "handler": "app"
+        }
+      }
     }
   ]
 }
