@@ -1,23 +1,25 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "sports_stats_app/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
+        "maxLambdaSize": "50mb" // Increase if your deployment is large
       }
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "sports_stats_app/wsgi.py",
-      "config": {
-        "wsgi": {
-          "handler": "app"
-        }
+      "src": "/static/(.*)",
+      "dest": "/static/$1",
+      "headers": {
+        "cache-control": "s-maxage=31536000, immutable"
       }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "sports_stats_app/wsgi.py"
     }
   ]
 }
