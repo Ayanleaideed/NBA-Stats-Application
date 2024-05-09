@@ -189,7 +189,7 @@ def fetch_live_and_upcoming_scores():
                 'date': 'Live'
             }
             games_list.append(game_info)
-
+       
         return games_list
 
     except Exception as e:

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -79,6 +79,26 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+"""
+This is a function that will logout the user from the website
+ever day at midnight
+"""
+
+from datetime import datetime, timedelta
+
+# Calculate seconds until midnight
+now = datetime.now()
+midnight = datetime.combine(now.date() + timedelta(days=1), datetime.min.time())
+seconds_until_midnight = (midnight - now).seconds
+
+# Set session to expire at midnight
+SESSION_COOKIE_AGE = seconds_until_midnight  # Expires at midnight
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False      # Session won't expire on browser close, only at the set time
+
+
+
 
 
 # Password validation
