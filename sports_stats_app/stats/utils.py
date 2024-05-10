@@ -35,7 +35,7 @@ from django.http import HttpResponse
 
 
 
-file_path = 'stats\data.json'
+# file_path = 'stats\data.json'
 file_path = 'stats/data.json'
 
 num_sorts_by_position = 2
