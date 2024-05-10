@@ -16,8 +16,10 @@
       "dest": "sports_stats_app/wsgi.py"
     }
   ],
-  "rewrites": {
-    "sources": "/(.*)",
-    "destination": "/"
-  }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
