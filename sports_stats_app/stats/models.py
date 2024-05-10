@@ -29,7 +29,7 @@ class PlayerSearchHistory(models.Model):
     draft_round = models.IntegerField(null=True, blank=True)
     draft_number = models.IntegerField(null=True, blank=True)
     team = models.CharField(max_length=100)
-    search_timestamp = models.DateTimeField(auto_now_add=True)  # Timestamp of the search
+    search_timestamp = models.DateTimeField(auto_now=True)# Timestamp of the search
 
     def __str__(self):
         return f"{self.user.username} searched for {self.first_name} {self.last_name} - {self.team}"
