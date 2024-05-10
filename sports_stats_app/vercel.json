@@ -1,23 +1,15 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "sports_stats_app/wsgi.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
+      "use": "@vercel/python",
       "config": {
-        "distDir": "staticfiles_build"
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.9"
       }
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "sports_stats_app/wsgi.py"
