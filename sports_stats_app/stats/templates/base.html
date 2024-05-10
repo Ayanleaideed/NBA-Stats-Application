@@ -38,22 +38,19 @@
                             <i class="bi bi-clipboard2-data-fill"></i> NBA Stats
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">
+                     <li class="nav-item">
+                            <a class="nav-link" href="https://stats.wnba.com/">
                                 <i class="bi bi-basket3"></i> WNBA Stats
                             </a>
-                        </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'search' %}">
-                            <i class="bi bi-search"></i> Search
-                        </a>
-                    </li>
+                        </li> 
+                            {% if request.user.is_superuser or request.user.is_staff %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'admin:index' %}">
+                                        <i class="bi bi-person-lines-fill"></i> Admin
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">
-                            <i class="bi bi-person-lines-fill"></i> Admin
-                        </a>
-                    </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
