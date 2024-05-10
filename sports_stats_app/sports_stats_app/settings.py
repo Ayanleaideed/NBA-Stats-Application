@@ -1,4 +1,4 @@
-# settings.py
+# sports_stats_app/settings.py
 
 import os
 from pathlib import Path
@@ -6,15 +6,18 @@ from datetime import datetime, timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nba-stats-application.vercel.app', '.vercel.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    'nba-stats-application.vercel.app',
+    'nba-stats-application-az7d11yrf-ayanles-projects-abda602c.vercel.app',
+    '.vercel.app',
+    '127.0.0.1',
+    'localhost'
+]
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +58,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 
-# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -67,14 +69,12 @@ DATABASES = {
     }
 }
 
-# Session settings
 now = datetime.now()
 midnight = datetime.combine(now.date() + timedelta(days=1), datetime.min.time())
 seconds_until_midnight = (midnight - now).seconds
 SESSION_COOKIE_AGE = seconds_until_midnight
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -82,15 +82,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
