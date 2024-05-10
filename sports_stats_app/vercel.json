@@ -1,18 +1,18 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "sports_stats_app/wsgi.py",
+      "src": "manage.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
+        "maxLambdaSize": "50mb"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "sports_stats_app/wsgi.py"
+      "dest": "manage.py"
     }
   ]
 }
