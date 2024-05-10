@@ -1,4 +1,4 @@
-# sports_stats_app/settings.py
+# settings.py
 
 import os
 from pathlib import Path
@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#'
+SECRET_KEY = 'your-secret-key'
 
 DEBUG = True
 
@@ -88,6 +88,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

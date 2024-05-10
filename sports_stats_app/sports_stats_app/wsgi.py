@@ -1,4 +1,4 @@
-# sports_stats_app/wsgi.py
+# wsgi.py
 
 import os
 from django.core.wsgi import get_wsgi_application
