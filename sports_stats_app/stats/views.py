@@ -310,7 +310,10 @@ def search(request):
         return render(request, 'stats/search.html', {'search_history': search_history})
         # return render(request, 'stats/search.html', {'search_results': []})
 
-
+import os
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
 
 # Define the API key and the base URL
 api_key = 'a16ac370-e80f-4615-a9c6-36346f9cb961'
