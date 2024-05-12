@@ -7,6 +7,12 @@ from pathlib import Path
 import environ
 
 
+
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()  # reads the .env file
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#'
