@@ -11,8 +11,8 @@ environ.Env.read_env()  # reads the .env file
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security and debugging settings
-SECRET_KEY = env('SECRET_KEY', default='django-insecure-z_zde1*fk)*_k$-cpoi)r-cb%23)y%=0j@n8h2tbou0be6^52#')
-DEBUG = env.bool('DEBUG', default=True)
+SECRET_KEY = env('SECRET_KEY', default='django-insecure-default-key')
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = [
     'nba-stats-application.vercel.app',
