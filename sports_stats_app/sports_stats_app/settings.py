@@ -58,36 +58,36 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 
-import os
+
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
 # connection to railway database servers 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('ENGINE'),
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': os.environ.get('HOST'),
-        'PORT': os.environ.get('PORT'),
-    }
-}
-
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'ISkEHDQeemKllOEJoceEJvxqMEqeePnk',
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': '13125',
+#         'ENGINE': os.environ.get('ENGINE'),
+#         'NAME': os.environ.get('NAME'),
+#         'USER': os.environ.get('USER'),
+#         'PASSWORD': os.environ.get('PASSWORD'),
+#         'HOST': os.environ.get('HOST'),
+#         'PORT': os.environ.get('PORT'),
 #     }
 # }
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ISkEHDQeemKllOEJoceEJvxqMEqeePnk',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '13125',
+    }
+}
 
 # DATABASES = {
 #     'default': {
