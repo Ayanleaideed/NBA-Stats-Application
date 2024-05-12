@@ -75,19 +75,26 @@ WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 #         'PORT': os.environ.get('PORT'),
 #     }
 # }
+import os
+import environ
 
 
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()  # reads the .env file
 
+# Database configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ISkEHDQeemKllOEJoceEJvxqMEqeePnk',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '13125',
-    }
+    'default': env.db(),
 }
+
+# Other settings
+SECRET_KEY = env('SECRET_KEY', default={})
+DEBUG = env.bool('DEBUG', default=False)
+
+
+
+
 
 # DATABASES = {
 #     'default': {
