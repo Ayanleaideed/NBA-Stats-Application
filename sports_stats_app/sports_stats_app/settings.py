@@ -59,10 +59,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+# load_dotenv()
 
 # connection to railway database servers 
 # DATABASES = {
