@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'sports_stats_app.wsgi.application'
 
 # Database configuration
 DATABASES = {
-    'default': env.db(),
+    'default': env.db('DATABASE_URL'),
 }
 
 # Session configuration
