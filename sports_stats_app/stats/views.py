@@ -347,9 +347,5 @@ def search_selected_player(request, first_name):
 
 
 
-
-
-
-
 if __name__=="__main__":
     debug=True
