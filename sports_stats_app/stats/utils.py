@@ -1,6 +1,7 @@
 import requests
 
 # Define the API key and the base URL
+# those api should not next week
 api_key = 'a16ac370-e80f-4615-a9c6-36346f9cb961'
 base_url = 'https://api.balldontlie.io/v1'
 
@@ -151,8 +152,3 @@ def fetch_games_upcoming(days_ahead=7):
     except requests.RequestException as e:
         return {'error': str(e)}
 
-# Usage example:
-# api_key = 'your_api_key_here'
-# games_info = fetch_games(api_key)
-# for game in games_info:
-#     print(game)
